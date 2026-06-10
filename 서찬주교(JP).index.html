@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聖サチャン教会 公式サイト</title>
+
+<style>
+body{
+    background:#000;
+    color:#fff;
+    font-family:"MS PGothic",sans-serif;
+    text-align:center;
+    margin:0;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.box{
+    border:1px solid #888;
+    margin:15px 0;
+    padding:15px;
+    background:#111;
+}
+
+h1{
+    color:#ffd700;
+    font-size:42px;
+}
+
+.blink{
+    animation:blink 1s infinite;
+    color:red;
+    font-weight:bold;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+
+button{
+    padding:8px 16px;
+    margin:5px;
+    cursor:pointer;
+}
+
+.counter{
+    font-size:32px;
+    color:#00ff00;
+}
+
+.status{
+    color:#87cefa;
+}
+
+.footer{
+    margin-top:40px;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✨ 聖サチャン教会 ✨</h1>
+
+<div class="blink">NEW! NEW! NEW!</div>
+
+<p>
+ようこそ。<br>
+あなたがここへ辿り着いたのは偶然ではありません。<br>
+すべては導きによるものです。
+</p>
+
+<div class="box">
+<h2>訪問者数</h2>
+
+<div class="counter">
+<span id="counter">...</span>
+</div>
+
+<p>
+あなたは本日ここへ導かれた
+<span id="counter2">...</span>
+番目の来訪者です。
+</p>
+</div>
+
+<div class="box">
+<h2>現在のサチャン司教</h2>
+
+<p class="status" id="status">
+観測中...
+</p>
+</div>
+
+<div class="box">
+<h2>本日の御言葉</h2>
+
+<p id="message">
+ボタンを押してください。
+</p>
+
+<button onclick="newMessage()">
+啓示を受信する
+</button>
+</div>
+
+<div class="box">
+<h2>精神接続システム</h2>
+
+<p id="connect">
+接続待機中...
+</p>
+</div>
+
+<div class="box">
+<h2>入信適性検査</h2>
+
+<p>
+あなたは導きを信じますか？
+</p>
+
+<button onclick="joinResult()">
+はい
+</button>
+
+<button onclick="joinResult()">
+はい
+</button>
+
+<p id="joinText"></p>
+</div>
+
+<div class="box">
+<h2>信徒ランク判定</h2>
+
+<button onclick="rankTest()">
+測定開始
+</button>
+
+<p id="rank"></p>
+</div>
+
+<div class="box">
+<h2>観測記録</h2>
+
+<p>
+2026年6月10日<br><br>
+
+午後3時17分、<br>
+サチャン司教と思われる人物が確認されました。<br><br>
+
+目撃者によれば、司教は静かに遠方を見つめていたとのことです。<br><br>
+
+その意味は現在も不明です。
+</p>
+</div>
+
+<div class="box">
+<h2>信徒の誓い</h2>
+
+<p>
+讃えよ、サチャン司教。<br>
+記憶せよ、サチャン司教。<br>
+待ち続けよ、サチャン司教。<br>
+導きを受け入れよ。
+</p>
+</div>
+
+<div class="footer">
+あなたは選ばれました。<br>
+Since 2001<br>
+聖サチャン教会
+</div>
+
+</div>
+
+<script>
+fetch("https://api.countapi.xyz/hit/sachan-bishop-japan/homepage")
+.then(res => res.json())
+.then(data=>{
+document.getElementById("counter").innerText=data.value;
+document.getElementById("counter2").innerText=data.value;
+});
+
+const messages=[
+"真実は常に近くにあります。しかし人々は遠くばかりを見ています。",
+"沈黙の中にのみ聞こえる声があります。",
+"迷いは罪ではありません。立ち止まることが罪なのです。",
+"偶然の出会いなど存在しません。",
+"答えは既にあなたの内側にあります。",
+"疑いは入口です。しかし出口ではありません。",
+"本質は常に変わりません。",
+"見えるものだけが世界ではありません。"
+];
+
+function newMessage(){
+document.getElementById("message").innerText=
+messages[Math.floor(Math.random()*messages.length)];
+}
+
+const statusList=[
+"東京で瞑想中",
+"観測不能",
+"移動中",
+"啓示発信中",
+"沈黙状態",
+"休息中",
+"遠方監視中",
+"精神世界接続中"
+];
+
+document.getElementById("status").innerText=
+statusList[Math.floor(Math.random()*statusList.length)];
+
+setTimeout(()=>{
+document.getElementById("connect").innerText=
+"サチャン司教との精神接続が確立されました。";
+},3000);
+
+function joinResult(){
+document.getElementById("joinText").innerText=
+"正しい選択です。";
+}
+
+function rankTest(){
+
+const ranks=[
+"一般信徒",
+"上級信徒",
+"司祭候補",
+"大司教候補",
+"サチャン司教直属"
+];
+
+document.getElementById("rank").innerText=
+ranks[Math.floor(Math.random()*ranks.length)];
+}
+</script>
+
+</body>
+</html>
